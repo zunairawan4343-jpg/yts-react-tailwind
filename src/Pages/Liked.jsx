@@ -11,7 +11,7 @@ export default function Liked() {
 
   return (
     <div className="p-5">
-      <h1 className="text-2xl font-bold mb-5">❤️ Your Favorites</h1>
+      <h1 className="text-2xl font-bold mb-5 text-white">❤️ Your Favorites</h1>
 
       {favorites.length === 0 ? (
         <p className="text-gray-400">No favorites yet.</p>

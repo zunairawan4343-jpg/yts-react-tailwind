@@ -2,15 +2,16 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import Home from "./Pages/Home";
-import Browse from "./Pages/Browse";
-import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp";
-import Top from "./Pages/Top";
-import LastYear from "./Pages/LastYear";
+const Home = React.lazy(() => import ( "./Pages/Home"));
+const Browse = React.lazy(() => import ( "./Pages/Browse"));
+const Login = React.lazy(() => import ( "./Pages/Login"));
+const SignUp = React.lazy(() => import ( "./Pages/SignUp"));
+const Top = React.lazy(() => import ( "./Pages/Top"));
+const LastYear = React.lazy(() => import ( "./Pages/LastYear"));
+const Detail = React.lazy(() => import ( "./Pages/Detail"));
 
-import Detail from "./Pages/Detail";
-import Liked from "./Pages/Liked";
+const Liked = React.lazy(() => import ( "./Pages/Liked"));
+
 
 function App() {
   return (

@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 import { Image, Button } from "@heroui/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Card({ movie, onFavoriteChange }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isFav, setIsFav] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const favs = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -13,7 +14,7 @@ export default function Card({ movie, onFavoriteChange }) {
 
   const toggleFavorite = (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    e.stopPropagation(); 
 
     let favs = JSON.parse(localStorage.getItem("favorites")) || [];
 
@@ -29,6 +30,10 @@ export default function Card({ movie, onFavoriteChange }) {
     if (onFavoriteChange) onFavoriteChange(favs);
   };
 
+  const goToDetail = () => {
+    navigate(`/detail/${movie.id}`);
+  };
+
   return (
     <div
       className={`
@@ -39,6 +44,7 @@ export default function Card({ movie, onFavoriteChange }) {
       `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={goToDetail} 
     >
       <Image
         alt={movie.title}
@@ -63,16 +69,6 @@ export default function Card({ movie, onFavoriteChange }) {
             <span>⭐ {movie.rating ?? "N/A"}</span>
             <span className="line-clamp-1">{movie.genres?.join(", ") ?? "Genre: N/A"}</span>
           </div>
-          <Link to={`/detail/${movie.id}`}>
-            <Button
-              size="sm"
-              radius="lg"
-              color="primary"
-              className="w-full bg-red-600 hover:bg-red-700 transition-colors"
-            >
-              View Details
-            </Button>
-          </Link>
         </div>
       )}
 
